@@ -2,7 +2,6 @@
 
 autoload -Uz promptinit
 promptinit
-prompt adam1
 
 setopt histignorealldups sharehistory
 
@@ -36,10 +35,13 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ###
 ### 
 ###
+export PATH=$PATH:/usr/local/go/bin
+export EDITOR=nvim
+export VISUAL=nvim
 
-source $HOME/dotfiles/shell/alieses.sh
-source $HOME/dotfiles/shell/funcs.sh
-[ -f $HOME/dotfiles/shell/funcs_local.sh ] && source $HOME/dotfiles/shell/funcs_local.sh
+source $HOME/dotfiles/unishell/alieses.sh
+source $HOME/dotfiles/unishell/funcs.sh
+[ -f $HOME/dotfiles/unishell/funcs_local.sh ] && source $HOME/dotfiles/unishell/funcs_local.sh
 
 # github.com/sindresorhus/pure
 fpath+=($HOME/dotfiles/zsh/pure)
