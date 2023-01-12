@@ -16,12 +16,13 @@ gnome-tweaks
 
 echo setting nvim up
 mkdir -p ~/.config/nvim
-nvim +PlugInstall +qall
 
 ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/dotfiles/unishell/conkyrc ~/.conkyrc
+
+nvim +PlugInstall +qall
 
 chsh -s $(which zsh) 
 

@@ -1,4 +1,5 @@
 export FUNCS_PATH=$HOME/dotfiles/unishell/funcs.sh
+export FUNCS_PATH_LOCAL=$HOME/dotfiles/unishell/funcs_local.sh
 export ALIASES_PATH=$HOME/dotfiles/unishell/aliases.sh
 
 f() {
@@ -7,6 +8,10 @@ f() {
 
 vf() {
 	nvim $FUNCS_PATH
+}
+
+vfl() {
+	nvim $FUNCS_PATH_LOCAL
 }
 
 va() {
