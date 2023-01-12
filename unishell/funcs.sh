@@ -22,6 +22,12 @@ vz() {
 	nvim ~/.zshrc
 }
 
+# git
+
+push() {
+	git add --all && git commit -m "$*" && git push
+}
+
 # usefull dockers
 
 allpine() {

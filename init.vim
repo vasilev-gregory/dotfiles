@@ -7,6 +7,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+	Plug 'preservim/nerdcommenter'
 	"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 	Plug 'tpope/vim-obsession'
 	Plug 'folke/zen-mode.nvim'
@@ -52,3 +53,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " zen-mode
 nnoremap <leader>z :ZenMode<cr>
+
+" nerdcommenter
+nmap <C-_> <plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle
