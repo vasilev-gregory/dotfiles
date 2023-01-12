@@ -1,0 +1,3 @@
+[ -f ~/dotfiles/unishell/funcs_local.sh ] && . ~/dotfiles/unishell/funcs_local.sh
+[ -f ~/dotfiles/unishell/funcs.sh ] && . ~/dotfiles/unishell/funcs.sh
+[ -f ~/dotfiles/unishell/aliases.sh ] && . ~/dotfiles/unishell/aliases.sh
