@@ -35,11 +35,24 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ###
 ### 
 ###
+
 export PATH=$PATH:/usr/local/go/bin
 export EDITOR=nvim
 export VISUAL=nvim
 
-source $HOME/dotfiles/unishell/alieses.sh
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+source $HOME/dotfiles/unishell/aliases.sh
 source $HOME/dotfiles/unishell/funcs.sh
 [ -f $HOME/dotfiles/unishell/funcs_local.sh ] && source $HOME/dotfiles/unishell/funcs_local.sh
 

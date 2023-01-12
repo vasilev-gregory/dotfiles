@@ -5,7 +5,7 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 
 # for gnome-tweak-tool, which is required for gnome-tweak-tool, which is required for remapping CAPS to CTRL
 sudo add-apt-repository universe
-sudo apt -y install tmux neovim gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find
+sudo apt -y install tmux neovim gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find conky-all
 
 git config --global user.email "vasiliev.gregory@gmail.com"
 git config --global user.name "Gregory"
@@ -21,6 +21,7 @@ nvim +PlugInstall +qall
 ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/dotfiles/unishell/conkyrc ~/.conkyrc
 
 chsh -s $(which zsh) 
 
@@ -56,3 +57,7 @@ sudo docker run hello-world
 
 echo golang should be installed manually
 echo https://go.dev/doc/install
+
+
+# signal : fix black screen 
+# https://askubuntu.com/a/1356534

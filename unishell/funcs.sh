@@ -1,4 +1,5 @@
 export FUNCS_PATH=$HOME/dotfiles/unishell/funcs.sh
+export ALIASES_PATH=$HOME/dotfiles/unishell/aliases.sh
 
 f() {
 	. $FUNCS_PATH
@@ -6,6 +7,14 @@ f() {
 
 vf() {
 	nvim $FUNCS_PATH
+}
+
+va() {
+	nvim $ALIASES_PATH
+}
+
+vz() {
+	nvim ~/.zshrc
 }
 
 # usefull dockers
