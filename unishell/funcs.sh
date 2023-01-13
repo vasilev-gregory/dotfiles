@@ -40,10 +40,9 @@ push() {
 
 allpine() {
 	echo sudo docker run -it --hostname allpine -v $(pwd):/$(basename $(pwd)) -w $(basename $(pwd)) --rm alldevops/allpine bash
-	sudo docker run -it --hostname allpine -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) --rm alldevops/allpine bash
+	docker run -it --hostname allpine -v $(pwd):/$(basename $(pwd)) -w /$(basename $(pwd)) --rm alldevops/allpine bash
 }
 
 docker_images_rm() {
-	sudo docker image rm -f $(sudo docker images | grep "^<none>" | awk '{print $3}')
-
+	docker image rm -f $(sudo docker images | grep "^<none>" | awk '{print $3}')
 }
