@@ -5,7 +5,7 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 
 # for gnome-tweak-tool, which is required for gnome-tweak-tool, which is required for remapping CAPS to CTRL
 sudo add-apt-repository universe
-sudo apt -y install tmux neovim gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find conky-all
+sudo apt -y install tmux neovim gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find conky-all build-essential python3 python3-pip lua-nvim
 
 git config --global user.email "vasiliev.gregory@gmail.com"
 git config --global user.name "Gregory"
@@ -18,11 +18,13 @@ echo setting nvim up
 mkdir -p ~/.config/nvim
 
 ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -s ~/dotfiles/unishell/conkyrc ~/.conkyrc
 
 nvim +PlugInstall +qall
+
+pip3 install --user pynvim
 
 chsh -s $(which zsh) 
 

@@ -22,6 +22,10 @@ vz() {
 	nvim ~/.zshrc
 }
 
+vv() {
+	nvim -c ':e $MYVIMRC'
+}
+
 # git
 
 push() {
