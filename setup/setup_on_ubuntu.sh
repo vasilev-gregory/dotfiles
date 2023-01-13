@@ -56,7 +56,12 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo docker run hello-world
+echo https://docs.docker.com/engine/install/linux-postinstall/
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+docker run hello-world
 
 echo golang should be installed manually
 echo https://go.dev/doc/install
