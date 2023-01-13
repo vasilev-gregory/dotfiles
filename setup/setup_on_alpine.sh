@@ -1,4 +1,5 @@
 apk --no-cache update
+echo apk --no-cache add neovim ripgrep python3 py3-pip
 apk --no-cache add neovim ripgrep python3 py3-pip
 
 pip3 install --user pynvim
