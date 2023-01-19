@@ -25,7 +25,7 @@ ln -s ~/dotfiles/unishell/conkyrc ~/.conkyrc
 
 nvim +PlugInstall +qall
 
-pip3 install --user pynvim wheel
+pip3 install --user wheel pynvim 
 
 chsh -s $(which zsh) 
 
