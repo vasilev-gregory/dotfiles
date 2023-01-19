@@ -25,6 +25,7 @@ call plug#begin()
 
 	Plug 'sheerun/vim-polyglot'
 	Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+	Plug 'feline-nvim/feline.nvim'
 
 
 call plug#end()
@@ -145,6 +146,8 @@ autocmd FileType go map <C-p> :cprevious<CR>
 nmap <leader><leader> :NvimTreeToggle<CR>
 
 
+
+
 lua << EOF
 local hint = [[
  Arrow^^^^^^   Select region with <C-v> 
@@ -219,3 +222,5 @@ require("catppuccin").setup({
 vim.cmd.colorscheme "catppuccin"
 
 EOF
+
+highlight StatusLine guibg=#9b59b6 guifg=black 
