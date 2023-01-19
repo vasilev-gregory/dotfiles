@@ -2,7 +2,8 @@ apk --no-cache update
 echo apk --no-cache add neovim ripgrep python3 py3-pip
 apk --no-cache add neovim ripgrep python3 py3-pip
 
-pip3 install --user wheel pynvim 
+pip3 install --user wheel 
+pip3 install --user pynvim 
 
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/init.vim ~/.config/nvim/init.vim
