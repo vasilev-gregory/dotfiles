@@ -46,3 +46,8 @@ allpine() {
 docker_images_rm() {
 	docker image rm -f $(sudo docker images | grep "^<none>" | awk '{print $3}')
 }
+
+yq() {
+	echo docker run --rm -v "${PWD}":/workdir mikefarah/yq
+	docker run --rm -v "${PWD}":/workdir mikefarah/yq
+}

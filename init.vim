@@ -20,6 +20,13 @@ call plug#begin()
 
 	Plug 'anuvyklack/hydra.nvim'
 	Plug 'jbyuki/venn.nvim'
+
+	Plug 'nvim-tree/nvim-tree.lua'
+
+	Plug 'sheerun/vim-polyglot'
+	Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+
 call plug#end()
 
 
@@ -54,8 +61,6 @@ nnoremap <silent> <C-W>j :vertical res 40 <CR>
 tnoremap <Esc> <C-\><C-n>
 
 
-
-
 """ PLUGS
 
 " zen-mode
@@ -76,7 +81,7 @@ let g:go_auto_sameids = 1
 let g:go_highlight_array_whitespace_error = 0
 
 "Highlight white space around the receive operator (`<-`) that doesn't follow the standard style. 
-  let g:go_highlight_chan_whitespace_error = 0
+let g:go_highlight_chan_whitespace_error = 0
 
 "Highlight commonly used library types (`io.Reader`, etc.). 
 let g:go_highlight_extra_types = 0
@@ -136,6 +141,9 @@ autocmd FileType go nmap <leader>m <Plug>(go-metalinter)
 autocmd FileType go map <C-n> :cnext<CR>
 autocmd FileType go map <C-p> :cprevious<CR>
 
+" nvim tree
+nmap <leader><leader> :NvimTreeToggle<CR>
+
 
 lua << EOF
 local hint = [[
@@ -174,5 +182,40 @@ if ok_hydra then
 	   }
 	})
 end
+
+-- tree
+require("nvim-tree").setup({
+	actions = {
+		open_file = {
+			quit_on_open = true,
+			window_picker = {
+				enable = true, 
+				picker = default,
+				chars = "fjdksla;"
+			}
+		}
+	},
+	renderer = {
+		icons = {
+			show = {
+				file = false, 
+				folder = false, 
+				folder_arrow = false, 
+				git = false, 
+				modified = false,
+			},
+			glyphs = {
+				default = "", 
+				symlink = ""
+			}
+		}
+	}
+})
+
+require("catppuccin").setup({
+	transparent_background = true,
+})
+
+vim.cmd.colorscheme "catppuccin"
 
 EOF
