@@ -20,6 +20,7 @@ call plug#begin()
 
 	Plug 'anuvyklack/hydra.nvim'
 	Plug 'jbyuki/venn.nvim'
+	"set ve=all
 
 	Plug 'nvim-tree/nvim-tree.lua'
 
@@ -27,7 +28,19 @@ call plug#begin()
 	Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 	Plug 'feline-nvim/feline.nvim'
 
+	"Plug 'sbdchd/neoformat'
+	Plug 'prettier/vim-prettier', {
+		\ 'do': 'yarn install --frozen-lockfile --production',
+		\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+	Plug 'mattn/emmet-vim'
+
+	Plug 'othree/html5.vim'
+	Plug 'pangloss/vim-javascript'
+	Plug 'evanleck/vim-svelte', {'branch': 'main'}
 call plug#end()
 
 
@@ -61,6 +74,11 @@ nnoremap <silent> <C-W>j :vertical res 40 <CR>
 " term
 tnoremap <Esc> <C-\><C-n>
 
+augroup myterm | au!
+    au TermOpen * if &buftype ==# 'terminal' | hori resize 10 | endif     
+		set wfh
+augroup end
+
 
 """ PLUGS
 
@@ -76,64 +94,64 @@ vmap <C-_> <plug>NERDCommenterToggle
 let g:deoplete#enable_at_startup = 1
 
 " vim-go
-let g:go_auto_sameids = 1
+"let g:go_auto_sameids = 1
 
 "Highlight white space after `[]`. 
-let g:go_highlight_array_whitespace_error = 0
+"let g:go_highlight_array_whitespace_error = 0
 
 "Highlight white space around the receive operator (`<-`) that doesn't follow the standard style. 
 let g:go_highlight_chan_whitespace_error = 0
 
 "Highlight commonly used library types (`io.Reader`, etc.). 
-let g:go_highlight_extra_types = 0
+"let g:go_highlight_extra_types = 0
 
 "Highlight instances of tabs following spaces. >
-let g:go_highlight_space_tab_error = 0
+"let g:go_highlight_space_tab_error = 0
 
 "Highlight trailing white space. >
-let g:go_highlight_trailing_whitespace_error = 0
+"let g:go_highlight_trailing_whitespace_error = 0
 
 "Highlight operators such as `:=` , `==`, `-=`, etc.
-let g:go_highlight_operators = 0
+"let g:go_highlight_operators = 0
 
 "Highlight function and method declarations.
-let g:go_highlight_functions = 0
+"let g:go_highlight_functions = 0
 
 "Highlight the variable names in parameters (including named return parameters) in function declarations. Setting this implies the functionality from |'g:go_highlight_functions'|.
-let g:go_highlight_function_parameters = 0
+"let g:go_highlight_function_parameters = 0
 
 "Highlight function and method calls.
-let g:go_highlight_function_calls = 0
+"let g:go_highlight_function_calls = 0
 
 "Highlight struct and interface names.
-let g:go_highlight_types = 0
+"let g:go_highlight_types = 0
 
 "Highlight struct field names.
-let g:go_highlight_fields = 0
+"let g:go_highlight_fields = 0
 
 "Highlights build constraints.
-let g:go_highlight_build_constraints = 0
+"let g:go_highlight_build_constraints = 0
 
 "Highlight go:generate directives.
-let g:go_highlight_generate_tags = 0
+"let g:go_highlight_generate_tags = 0
 
 "Highlight spelling errors in strings when |spell| is enabled.
-let g:go_highlight_string_spellcheck = 1
+"let g:go_highlight_string_spellcheck = 1
 
 "Highlight printf-style formatting verbs inside string literals.
-let g:go_highlight_format_strings = 1
+"let g:go_highlight_format_strings = 1
 
 "Highlight variable names in variable declarations (`x` in ` x :=`).
-let g:go_highlight_variable_declarations = 0
+"let g:go_highlight_variable_declarations = 0
 
 "Highlight variable names in variable assignments (`x` in `x =`).
-let g:go_highlight_variable_assignments = 0
+"let g:go_highlight_variable_assignments = 0
 
 "Highlight diagnostic errors.
-let g:go_highlight_diagnostic_errors = 1
+"let g:go_highlight_diagnostic_errors = 1
 
 "Highlight diagnostic warnings.
-let g:go_highlight_diagnostic_warnings = 1
+"let g:go_highlight_diagnostic_warnings = 1
 
 nnoremap gs :vsplit<CR>:GoDef<CR>
 autocmd FileType go nmap <leader>b <Plug>(go-build)
@@ -144,11 +162,36 @@ autocmd FileType go map <C-p> :cprevious<CR>
 
 " nvim tree
 nmap <leader><leader> :NvimTreeToggle<CR>
+"nmap <leader><leader> :NvimTreeToggle<CR>:call win_execute(bufnr('term://*'), 'hori resize 10')<CR>
+"function! ResizeTerm()
+    "let term_win = win_findbuf(bufnr('term://*'))
+    "if term_win != -1
+        "call win_execute(term_win, 'hori resize 10')
+    "endif
+"endfunction
+
+"nnoremap <leader><leader> :NvimTreeToggle<CR>:call ResizeTerm()<CR>
+"nmap <leader><leader> :NvimTreeToggle<CR>:call win_execute(bufnr('term://*'), 'hori resize 10')<CR>
 
 
+" telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+
+
+augroup go_chat_syn
+		autocmd!
+		autocmd BufNewFile,BufRead *.go.chat set filetype=go
+augroup end
 
 
 lua << EOF
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+
+
 local hint = [[
  Arrow^^^^^^   Select region with <C-v> 
  ^ ^ _K_ ^ ^   _f_: surround it with box
@@ -215,6 +258,17 @@ require("nvim-tree").setup({
 	}
 })
 
+
+-- zen
+require("zen-mode").setup({
+	window = {
+		width = .99
+	},
+	plugins = {
+		tmux = { enabled = false },
+	}
+})
+
 require("catppuccin").setup({
 	transparent_background = true,
 })
@@ -223,4 +277,6 @@ vim.cmd.colorscheme "catppuccin"
 
 EOF
 
-highlight StatusLine guibg=#9b59b6 guifg=black 
+highlight StatusLine guibg=#9b59b6 guifg=black
+highlight StatusLineNC guibg=#8b49b6 guifg=black
+
