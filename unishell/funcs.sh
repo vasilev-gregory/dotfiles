@@ -38,6 +38,10 @@ vv() {
 	nvim -c ':e $MYVIMRC'
 }
 
+vw() {
+	nvim -c ':VimwikiIndex'
+}
+
 vs() {
 	nvim ~/dotfiles/setup/setup_on_ubuntu.sh
 }
@@ -60,7 +64,7 @@ docker_images_rm() {
 }
 
 yq() {
-	echo docker run --rm -v "${PWD}":/workdir mikefarah/yq
+	#echo docker run --rm -v "${PWD}":/workdir mikefarah/yq
 	docker run --rm -v "${PWD}":/workdir mikefarah/yq
 }
 
@@ -87,6 +91,32 @@ pass() {
   length=$1
   < /dev/urandom tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c${length}
   echo
+}
+
+custom_cat() {
+  if [ -z "$1" ]; then
+    echo "Error: No file provided."
+    return 1
+  fi
+
+  if [ ! -f "$1" ]; then
+    echo "Error: File not found."
+    return 1
+  fi
+
+  local first_line=true
+  while IFS= read -r line; do
+    if $first_line; then
+      echo "'$line'"
+      first_line=false
+    else
+      echo ", '$line'"
+    fi
+  done < "$1"
+
+  if ! $first_line; then
+    echo ", 'lastline'"
+  fi
 }
 
 #gpt() {

@@ -41,6 +41,10 @@ call plug#begin()
 	Plug 'othree/html5.vim'
 	Plug 'pangloss/vim-javascript'
 	Plug 'evanleck/vim-svelte', {'branch': 'main'}
+	Plug 'othree/xml.vim'
+
+	Plug 'vimwiki/vimwiki'
+	"Plug 'github/copilot.vim'
 call plug#end()
 
 
@@ -48,6 +52,8 @@ call plug#end()
 
 set mouse=
 
+set nocompatible
+syntax on
 filetype plugin on
 
 "https://vimtricks.com/p/what-is-set-hidden/
@@ -78,6 +84,12 @@ augroup myterm | au!
     au TermOpen * if &buftype ==# 'terminal' | hori resize 10 | endif     
 		set wfh
 augroup end
+
+function! FSQL()
+    let saved_view = winsaveview()
+    execute '%!python3 -c "import sqlparse, sys; sys.stdout.write(sqlparse.format(sys.stdin.read(), reindent=True))"'
+    call winrestview(saved_view)
+endfunction
 
 
 """ PLUGS
