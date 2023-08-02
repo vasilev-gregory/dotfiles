@@ -27,7 +27,7 @@ conky.config = {
 	font = 'Ubuntu Mono:size=12',
 	xftalpha = 0.8,
 	uppercase = false,
-	default_color = 'white',
+	default_color = '#1E355F',
 	own_window_colour = '#000000',
 	minimum_width = 300, minimum_height = 0,
 	alignment = 'top_right',

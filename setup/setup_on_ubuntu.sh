@@ -5,7 +5,7 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 
 # for gnome-tweak-tool, which is required for gnome-tweak-tool, which is required for remapping CAPS to CTRL
 sudo add-apt-repository universe
-sudo apt -y install tmux gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find conky-all build-essential python3 python3-pip lua-nvim snapd
+sudo apt -y install tmux gnome-tweaks git zsh telegram-desktop gnome-shell-extension-prefs ripgrep fd-find conky-all build-essential python3 python3-pip lua-nvim snapd cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 sudo snap install nvim --classic
 
 git config --global user.email "vasiliev.gregory@gmail.com"
