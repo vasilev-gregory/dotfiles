@@ -28,10 +28,10 @@ call plug#begin()
 	Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 	Plug 'feline-nvim/feline.nvim'
 
-	"Plug 'sbdchd/neoformat'
-	Plug 'prettier/vim-prettier', {
-		\ 'do': 'yarn install --frozen-lockfile --production',
-		\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+	Plug 'sbdchd/neoformat'
+	"Plug 'prettier/vim-prettier', {
+		"\ 'do': 'yarn install --frozen-lockfile --production',
+		"\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }

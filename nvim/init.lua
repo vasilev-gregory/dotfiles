@@ -87,23 +87,25 @@ require("catppuccin").setup({
 vim.cmd.colorscheme "catppuccin"
 local augroup = vim.api.nvim_create_augroup("numbertoggle", {})
 
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter", "TermLeave" }, {
    pattern = "*",
    group = augroup,
    callback = function()
       if vim.api.nvim_get_mode().mode ~= "i" then
          vim.opt.number = true
          vim.opt.relativenumber = true
+         vim.opt.signcolumn = "no" -- always show signcolumn
       end
    end,
 })
 
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave", "TermEnter" }, {
    pattern = "*",
    group = augroup,
    callback = function()
       vim.opt.number = false
       vim.opt.relativenumber = false
+      vim.opt.signcolumn = "yes:2" -- show signcolumn only if there are signs
       vim.cmd "redraw"
    end,
 })
