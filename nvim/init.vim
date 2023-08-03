@@ -69,6 +69,9 @@ set splitright
 nnoremap H gT
 nnoremap L gt
 
+" yank to system clipboard on Y
+nnoremap Y "+y
+
 " in insert or command mode move normally with ctrl
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>

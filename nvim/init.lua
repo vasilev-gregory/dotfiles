@@ -92,10 +92,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "Cmdline
    group = augroup,
    callback = function()
       if vim.api.nvim_get_mode().mode ~= "i" then
-         vim.opt.number = true
+         vim.opt.number = false
          vim.opt.relativenumber = true
          vim.opt.signcolumn = "no" -- always show signcolumn
-      end
+			 end
    end,
 })
 
