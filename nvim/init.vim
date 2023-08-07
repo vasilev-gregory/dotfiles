@@ -71,6 +71,7 @@ nnoremap L gt
 
 " yank to system clipboard on Y
 nnoremap Y "+y
+xnoremap Y "+y
 
 " in insert or command mode move normally with ctrl
 inoremap <C-h> <Left>
