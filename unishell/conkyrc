@@ -40,7 +40,7 @@ ${voffset 4}${alignc}${time %A %B %d, %Y}
 ${font}${voffset -4}
 
 ${font sans-serif:bold:size=10}TASKWARRIOR ${hr 2}
-${exec task rc.verbose=nothing active rc.report.active.columns='description' rc.report.active.labels='Description'}
+${exec task rc.verbose=nothing active rc.report.active.columns='id,description' rc.report.active.labels='ID,Description'}
 
 ${font sans-serif:bold:size=10}MEMORY ${hr 2}
 ${font sans-serif:normal:size=8}RAM $alignc $mem / $memmax $alignr $memperc%
